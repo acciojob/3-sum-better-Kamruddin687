@@ -1,34 +1,32 @@
-var threeSum = function(array) {
-     array.sort((a,b) => a - b);
-    const triplets = [];
+var threeSum = function (a) {
+    let n = a.length;
 
-    for(let i=0; i < array.length - 2; i++){
-        if(array[i] != array[i-1]){ // making sure our solution set does not contain duplicate triplets
-            let left = i + 1;
-          let right = array.length - 1;
+    a.sort((a, b) => a - b);
 
-            while (left < right){
-                const currentSum = array[i] + array[left] + array[right];
-                if (currentSum === 0){
-                    triplets.push([array[i], array[left], array[right]]);
-                    while(array[left] == array[left + 1]) left ++
-                    while(array[right] == array[right - 1]) right -- // making sure our solution set does not contain duplicate triplets
-                    left ++;
-                    right --;
-                } else if(currentSum < 0) {
-                    left ++
-                } else if(currentSum > 0){
-                    right --
-                }
+    let aa = [];
+    for (let i = 0; i < n; i++) {
+        // optimization 1
+        if (a[i] > 0) break;
+
+        let t = -a[i]; // target;
+        for (let L = i + 1, R = n - 1; L < R; ) {
+            let sum = a[L] + a[R];
+            if (sum === t) {
+                aa.push([a[i], a[L], a[R]]);
+                // optimization 2
+                while (a[L] === a[L + 1]) L++;
+                L++;
+            } else if (sum < t) {
+                L++;
+            } else {
+                R--;
             }
         }
+
+        // optimization 3
+        while (a[i] === a[i + 1]) i++;
     }
-    return triplets
 
+    return aa;
 
-
-
-  
-}
-
-module.exports = threeSum;
+};
