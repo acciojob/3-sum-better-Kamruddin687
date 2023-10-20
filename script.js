@@ -1,4 +1,4 @@
-functiovar threeSum = function(array) {
+var threeSum = function(array) {
      array.sort((a,b) => a - b);
     const triplets = [];
 
