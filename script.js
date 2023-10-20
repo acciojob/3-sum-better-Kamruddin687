@@ -1,28 +1,29 @@
-function threeSum(sums, target) {
-// write your code her
-  nums.sort((a, b) => a - b); // Sort the array in ascending order.
-  let closestSum = nums[0] + nums[1] + nums[2]; // Initialize closestSum with the sum of the first three elements.
+functiovar threeSum = function(array) {
+     array.sort((a,b) => a - b);
+    const triplets = [];
 
-  for (let i = 0; i < nums.length - 2; i++) {
-    let left = i + 1;
-    let right = nums.length - 1;
+    for(let i=0; i < array.length - 2; i++){
+        if(array[i] != array[i-1]){ // making sure our solution set does not contain duplicate triplets
+            let left = i + 1;
+          let right = array.length - 1;
 
-    while (left < right) {
-      const currentSum = nums[i] + nums[left] + nums[right];
-
-      if (Math.abs(currentSum - target) < Math.abs(closestSum - target)) {
-        closestSum = currentSum;
-      }
-
-      if (currentSum < target) {
-        left++;
-      } else {
-        right--;
-      }
+            while (left < right){
+                const currentSum = array[i] + array[left] + array[right];
+                if (currentSum === 0){
+                    triplets.push([array[i], array[left], array[right]]);
+                    while(array[left] == array[left + 1]) left ++
+                    while(array[right] == array[right - 1]) right -- // making sure our solution set does not contain duplicate triplets
+                    left ++;
+                    right --;
+                } else if(currentSum < 0) {
+                    left ++
+                } else if(currentSum > 0){
+                    right --
+                }
+            }
+        }
     }
-  }
-
-  return closestSum;
+    return triplets
 
 
 
