@@ -1,4 +1,5 @@
-function threeSum(nums, target) {
+function threeSum(sums, target) {
+// write your code her
   nums.sort((a, b) => a - b); // Sort the array in ascending order.
   let closestSum = nums[0] + nums[1] + nums[2]; // Initialize closestSum with the sum of the first three elements.
 
@@ -22,10 +23,11 @@ function threeSum(nums, target) {
   }
 
   return closestSum;
+
+
+
+
+  
 }
 
-// Example usage
-const S = [-1, 2, 1, -4];
-const target = 1;
-const closest = threeSum(S, target);
-console.log("The sum closest to the target is:", closest);
+module.exports = threeSum;
